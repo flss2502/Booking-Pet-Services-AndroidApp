@@ -5,10 +5,10 @@ plugins {
 
 android {
 
-    compileSdk = 33
+    compileSdk = 34
     defaultConfig {
         applicationId = "com.example.firebase"
-        minSdkVersion(33)
+        minSdkVersion(26)
         targetSdkVersion(34)
         versionCode = 1
         versionName = "1.0"
@@ -39,6 +39,11 @@ dependencies {
     implementation("androidx.activity:activity-ktx:1.4.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.3")
     implementation(libs.firebase.database)
+    implementation(fileTree(mapOf(
+            "dir" to "F:\\Semester 8\\PRM392\\ZaloPayLib",
+            "include" to listOf("*.aar", "*.jar"),
+            "exclude" to listOf(""))))
+    implementation(libs.activity)
 
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.3")
@@ -49,4 +54,6 @@ dependencies {
     implementation(platform("com.google.firebase:firebase-bom:33.1.0"))
     implementation("com.google.firebase:firebase-analytics-ktx")
     implementation("com.google.firebase:firebase-database-ktx")
+    implementation("com.squareup.okhttp3:okhttp:4.6.0")
+    implementation("commons-codec:commons-codec:1.14")
 }
