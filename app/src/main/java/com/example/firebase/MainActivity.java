@@ -8,6 +8,7 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.firebase.Activity.ServicesPet.ServicesPetActivity;
 import com.example.firebase.Activity.User.UserActivity;
 import com.example.firebase.Model.Booking;
 import com.example.firebase.Model.Feedback;
@@ -39,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
 
     //Api
     private Button btnUserApi;
+    private Button btnServiceApi;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,6 +70,7 @@ public class MainActivity extends AppCompatActivity {
 
         //Api
         btnUserApi = findViewById(R.id.buttonUser);
+        btnServiceApi = findViewById(R.id.buttonServicesPet);
 
         btnUserApi.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -76,6 +79,16 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+
+        btnServiceApi.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, ServicesPetActivity.class);
+                startActivity(intent);
+            }
+        });
+
     }
 
     private void addSampleUsers() {

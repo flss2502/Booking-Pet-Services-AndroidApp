@@ -5,30 +5,43 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
-
-
-    <Button
-        android:id="@+id/buttonUser"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="User"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.196"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.095" />
+    tools:context=".Activity.ServicesPet.ServicesPetActivity">
 
     <Button
-        android:id="@+id/buttonServicesPet"
+        android:id="@+id/btn_list_services"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Services"
+        android:text="List_All"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.759"
+        app:layout_constraintHorizontal_bias="0.193"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.095" />
+        app:layout_constraintVertical_bias="0.111" />
+
+    <Button
+        android:id="@+id/btn_list_detail_update_delete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="List_Detail and Update, delete"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.35"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.395" />
+
+    <Button
+        android:id="@+id/btn_create_services"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Create Service"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.225"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.254" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
