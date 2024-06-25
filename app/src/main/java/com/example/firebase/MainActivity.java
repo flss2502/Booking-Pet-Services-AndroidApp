@@ -1,9 +1,14 @@
 package com.example.firebase;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.firebase.Activity.User.UserActivity;
 import com.example.firebase.Model.Booking;
 import com.example.firebase.Model.Feedback;
 import com.example.firebase.Model.Room;
@@ -31,6 +36,10 @@ public class MainActivity extends AppCompatActivity {
     private DatabaseReference feedbackRef;
     private DatabaseReference trackingRef; // Add DatabaseReference for Tracking
 
+
+    //Api
+    private Button btnUserApi;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,6 +63,19 @@ public class MainActivity extends AppCompatActivity {
         addSampleRooms();
         addSampleFeedbacks();
         addSampleTracking(); // Call method to add sample Tracking data
+
+
+
+        //Api
+        btnUserApi = findViewById(R.id.buttonUser);
+
+        btnUserApi.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, UserActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     private void addSampleUsers() {

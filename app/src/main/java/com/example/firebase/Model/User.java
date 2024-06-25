@@ -12,6 +12,7 @@ public class User implements Parcelable {
     private String address;
     private Role role;
 
+
     // Constructor
     public User(long userId, String fullName, String email, String password, String phone, String address, Role role) {
         this.userId = userId;
