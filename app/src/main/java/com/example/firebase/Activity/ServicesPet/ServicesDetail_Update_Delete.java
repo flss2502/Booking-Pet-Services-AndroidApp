@@ -8,30 +8,24 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 import com.example.firebase.Activity.User.UserDetail_UpdateActivity;
 import com.example.firebase.Api.ServicesPetApi;
-import com.example.firebase.Api.UserApiService;
 import com.example.firebase.Model.Services;
-import com.example.firebase.Model.User;
 import com.example.firebase.R;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class ServicesDetailActivity extends AppCompatActivity {
+public class ServicesDetail_Update_Delete extends AppCompatActivity {
 
     private EditText edtServiceName, edtDescription, edtPrice, edtServiceId;
     private static final String TAG = "ServicesDetailActivity";
 
 
-    private Button btnCallApi;
+    private Button btnCallApi, btnUpdateService;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,6 +37,7 @@ public class ServicesDetailActivity extends AppCompatActivity {
         edtServiceId = findViewById(R.id.edt_serviceID);
 
         btnCallApi = findViewById(R.id.btn_call_api_service);
+        btnUpdateService = findViewById(R.id.btn_Update_api_service);
 
         btnCallApi.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -55,7 +50,7 @@ public class ServicesDetailActivity extends AppCompatActivity {
                 String servicesIdInput = edtServiceId.getText().toString();
 
                 if (servicesIdInput.isEmpty()) {
-                    Toast.makeText(ServicesDetailActivity.this, "Please enter a user ID", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ServicesDetail_Update_Delete.this, "Please enter a user ID", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
@@ -66,7 +61,7 @@ public class ServicesDetailActivity extends AppCompatActivity {
                     ServicesPetApi.servicesPetApi.getServicesPet(servicesId).enqueue(new Callback<Services>() {
                         @Override
                         public void onResponse(Call<Services> call, Response<Services> response) {
-                            Toast.makeText(ServicesDetailActivity
+                            Toast.makeText(ServicesDetail_Update_Delete
                                     .this, "Call api Success", Toast.LENGTH_SHORT).show();
 
                             Services services = response.body();
@@ -81,15 +76,53 @@ public class ServicesDetailActivity extends AppCompatActivity {
 
                         @Override
                         public void onFailure(Call<Services> call, Throwable t) {
-                            Toast.makeText(ServicesDetailActivity.this, "Call api Error", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(ServicesDetail_Update_Delete.this, "Call api Error", Toast.LENGTH_SHORT).show();
                         }
                     });
 
                 } catch (NumberFormatException e) {
-                    Toast.makeText(ServicesDetailActivity.this, "Invalid user ID", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ServicesDetail_Update_Delete.this, "Invalid user ID", Toast.LENGTH_SHORT).show();
                 }
             }
         });
+
+        btnUpdateService.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                hideKeyboard();
+                apiUpdate();
+            }
+
+            private void apiUpdate() {
+                String serviceName = edtServiceName.getText().toString();
+                String description = edtDescription.getText().toString();
+                Double price = Double.parseDouble(edtPrice.getText().toString());
+                Long serviceId = Long.parseLong(edtServiceId.getText().toString());
+
+                Services services = new Services(serviceId,serviceName,description,price);
+
+                ServicesPetApi servicesPetApi = ServicesPetApi.servicesPetApi;
+                Call<Services> call = servicesPetApi.updateServices(serviceId, services);
+
+                call.enqueue(new Callback<Services>() {
+                    @Override
+                    public void onResponse(Call<Services> call, Response<Services> response) {
+                        if (response.isSuccessful()) {
+                            Toast.makeText(ServicesDetail_Update_Delete.this, "User updated successfully!", Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(ServicesDetail_Update_Delete.this, "Failed to update user!", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<Services> call, Throwable t) {
+                        Toast.makeText(ServicesDetail_Update_Delete.this, "Error: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+
+                    }
+                });
+            }
+        });
+
 
     }
 

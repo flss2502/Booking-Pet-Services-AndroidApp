@@ -1,6 +1,7 @@
 package com.example.firebase.Activity.ServicesPet;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -14,6 +15,7 @@ import com.example.firebase.R;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -34,24 +36,20 @@ public class ServicesListActivity extends AppCompatActivity {
     }
 
     private void callApi() {
-        Call<List<Services>> call = ServicesPetApi.servicesPetApi.getAllServicesPet();
+        Call<Map<String,Services>> call = ServicesPetApi.servicesPetApi.getAllServicesPet();
 
-        call.enqueue(new Callback<List<Services>>() {
+        call.enqueue(new Callback<Map<String,Services>>() {
             @Override
-            public void onResponse(Call<List<Services>> call, Response<List<Services>> response) {
+            public void onResponse(Call<Map<String,Services>> call, Response<Map<String,Services>> response) {
                 if (response.isSuccessful() && response.body() != null) {
-                    List<Services> servicesList = response.body();
 
-                    // Filter out null elements from the list
-                    List<Services> filteredList = new ArrayList<>();
-                    for (Services service : servicesList) {
-                        if (service != null) {
-                            filteredList.add(service);
-                        }
-                    }
+                    Map<String, Services> servicesMap = response.body();
+
+                    ArrayList<Services> servicesList = new ArrayList<>(servicesMap.values());
+
 
                     // Create adapter with filtered list
-                    servicesAdapter = new ServicesAdapter(filteredList);
+                    servicesAdapter = new ServicesAdapter(servicesList);
                     recyclerView.setAdapter(servicesAdapter);
 
                     Toast.makeText(ServicesListActivity.this, "Success", Toast.LENGTH_SHORT).show();
@@ -61,8 +59,9 @@ public class ServicesListActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<List<Services>> call, Throwable t) {
+            public void onFailure(Call<Map<String,Services>> call, Throwable t) {
                 Toast.makeText(ServicesListActivity.this, "Error: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+                Log.e("AddServicesActivity", "Error creating services", t);
             }
         });
     }

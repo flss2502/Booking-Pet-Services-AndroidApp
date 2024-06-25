@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".Activity.ServicesPet.ServicesDetailActivity">
+    tools:context=".Activity.ServicesPet.ServicesDetail_Update_Delete">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -86,5 +86,21 @@
         android:text="Call api"
         android:textColor="@color/white" />
 
+    <Button
+        android:id="@+id/btn_Update_api_service"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:background="#FFFFFF"
+        android:text="Update"
+        android:textColor="@color/white" />
 
+    <Button
+        android:id="@+id/btn_Delele_api_service"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:background="#FFFFFF"
+        android:text="Delele"
+        android:textColor="@color/white" />
 </LinearLayout>

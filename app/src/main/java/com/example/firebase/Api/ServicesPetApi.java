@@ -34,8 +34,7 @@ public interface ServicesPetApi {
 
 
     @GET("services.json")
-    Call<List<Services>> getAllServicesPet();
-
+    Call<Map<String, Services>> getAllServicesPet();
     @POST("services.json")
     Call<Services> createServices(@Body Services services);
 

@@ -17,9 +17,9 @@ import java.util.List;
 
 public class ServicesAdapter extends RecyclerView.Adapter<ServicesAdapter.ServicesViewHolder> {
 
-    private List<Services> servicesList;
+    private ArrayList<Services> servicesList;
 
-    public ServicesAdapter(List<Services> servicesList){
+    public ServicesAdapter(ArrayList<Services> servicesList){
         this.servicesList = servicesList;
     }
 

@@ -19,7 +19,7 @@
             android:name=".Activity.ServicesPet.AddServicesActivity"
             android:exported="false" />
         <activity
-            android:name=".Activity.ServicesPet.ServicesDetailActivity"
+            android:name=".Activity.ServicesPet.ServicesDetail_Update_Delete"
             android:exported="false" />
         <activity
             android:name=".Activity.ServicesPet.ServicesListActivity"
