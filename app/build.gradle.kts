@@ -5,7 +5,7 @@ plugins {
 
 android {
 
-    compileSdk = 33
+    compileSdk = 34
     defaultConfig {
         applicationId = "com.example.firebase"
         minSdkVersion(33)
@@ -39,6 +39,8 @@ dependencies {
     implementation("androidx.activity:activity-ktx:1.4.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.3")
     implementation(libs.firebase.database)
+    implementation(libs.activity)
+    implementation(libs.firebase.auth)
 
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.3")
