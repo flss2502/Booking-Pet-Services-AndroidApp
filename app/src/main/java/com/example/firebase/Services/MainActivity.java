@@ -1,4 +1,4 @@
-package com.example.firebase;
+package com.example.firebase.Services;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -12,6 +12,7 @@ import com.example.firebase.Model.User;
 import com.example.firebase.Model.Services;
 import com.example.firebase.Model.Role;
 import com.example.firebase.Model.Tracking;
+import com.example.firebase.R;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -90,10 +91,10 @@ public class MainActivity extends AppCompatActivity {
 
     private void addSampleServices() {
         ArrayList<Services> servicesArrayList = new ArrayList<>();
-        Services service1 = new Services(1, "Haircut", "Professional haircut service", 25.5);
-        Services service2 = new Services(2, "Manicure", "Nail care service", 15.0);
-        servicesArrayList.add(service1);
-        servicesArrayList.add(service2);
+//        Services service1 = new Services(1, "Haircut", "Professional haircut service", 25.5);
+//        Services service2 = new Services(2, "Manicure", "Nail care service", 15.0);
+//        servicesArrayList.add(service1);
+//        servicesArrayList.add(service2);
 
         // Push services to Firebase under "services" node
         for (Services service : servicesArrayList) {

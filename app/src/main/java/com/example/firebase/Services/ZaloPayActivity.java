@@ -1,4 +1,4 @@
-package com.example.firebase;
+package com.example.firebase.Services;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,9 +9,8 @@ import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
+
+import com.example.firebase.R;
 
 public class ZaloPayActivity extends AppCompatActivity {
     Button btnConfirm;

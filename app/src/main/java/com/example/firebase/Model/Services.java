@@ -5,6 +5,7 @@ public class Services {
     private String serviceName;
     private String description;
     private double price;
+    private String serviceImageUrl;
 
     // Constructors
     public Services() {
@@ -13,11 +14,20 @@ public class Services {
 
 
 
-    public Services(long serviceId, String serviceName, String description, double price) {
+    public Services(long serviceId, String serviceImageUrl, String serviceName, String description, double price) {
         this.serviceId = serviceId;
+        this.serviceImageUrl = serviceImageUrl;
         this.serviceName = serviceName;
         this.description = description;
         this.price = price;
+    }
+
+    public String getServiceImageUrl() {
+        return serviceImageUrl;
+    }
+
+    public void setServiceImageUrl(String serviceImageUrl) {
+        this.serviceImageUrl = serviceImageUrl;
     }
 
     // Getters and Setters
