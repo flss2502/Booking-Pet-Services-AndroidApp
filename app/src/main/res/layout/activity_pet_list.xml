@@ -8,7 +8,7 @@
     android:orientation="vertical"
     android:padding="8dp"
 
-    tools:context=".Activity.Pet.PetListActivity">
+    tools:context=".activity.pet.PetListActivity">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view_pet"

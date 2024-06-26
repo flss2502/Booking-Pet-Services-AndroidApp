@@ -16,40 +16,40 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:name=".Activity.Pet.PetListActivity"
+            android:name=".activity.pet.PetListActivity"
             android:exported="false" />
         <activity
-            android:name=".Activity.Pet.PetDetail_Update_Delete"
+            android:name=".activity.pet.PetDetail_Update_Delete"
             android:exported="false" />
         <activity
-            android:name=".Activity.Pet.AddPetActivity"
+            android:name=".activity.pet.AddPetActivity"
             android:exported="false" />
         <activity
-            android:name=".Activity.Pet.PetActivity"
+            android:name=".activity.pet.PetActivity"
             android:exported="false" />
         <activity
-            android:name=".Activity.ServicesPet.AddServicesActivity"
+            android:name=".activity.servicesPet.AddServicesActivity"
             android:exported="false" />
         <activity
-            android:name=".Activity.ServicesPet.ServicesDetail_Update_Delete"
+            android:name=".activity.servicesPet.ServicesDetail_Update_Delete"
             android:exported="false" />
         <activity
-            android:name=".Activity.ServicesPet.ServicesListActivity"
+            android:name=".activity.servicesPet.ServicesListActivity"
             android:exported="false" />
         <activity
-            android:name=".Activity.ServicesPet.ServicesPetActivity"
+            android:name=".activity.servicesPet.ServicesPetActivity"
             android:exported="false" />
         <activity
-            android:name=".Activity.User.AddUserActivity"
+            android:name=".activity.user.AddUserActivity"
             android:exported="false" />
         <activity
-            android:name=".Activity.User.UsersListActivity"
+            android:name=".activity.user.UsersListActivity"
             android:exported="false" />
         <activity
-            android:name=".Activity.User.UserDetail_UpdateActivity"
+            android:name=".activity.user.UserDetail_UpdateActivity"
             android:exported="false" />
         <activity
-            android:name=".Activity.User.UserActivity"
+            android:name=".activity.user.UserActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"

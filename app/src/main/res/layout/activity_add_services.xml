@@ -8,7 +8,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:paddingTop="20dp"
-    tools:context=".Activity.ServicesPet.AddServicesActivity">
+    tools:context=".activity.servicesPet.AddServicesActivity">
 
 
     <LinearLayout

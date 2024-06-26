@@ -9,7 +9,7 @@
     android:orientation="vertical"
     android:paddingTop="20dp"
 
-    tools:context=".Activity.Pet.AddPetActivity">
+    tools:context=".activity.pet.AddPetActivity">
 
     <LinearLayout
         android:layout_width="match_parent"

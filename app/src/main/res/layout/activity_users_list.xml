@@ -6,7 +6,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:padding="8dp"
-    tools:context=".Activity.User.UsersListActivity">
+    tools:context=".activity.user.UsersListActivity">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view_users"

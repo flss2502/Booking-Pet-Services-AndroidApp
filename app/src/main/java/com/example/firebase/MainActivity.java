@@ -8,21 +8,19 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.firebase.Activity.Pet.PetActivity;
-import com.example.firebase.Activity.ServicesPet.ServicesPetActivity;
-import com.example.firebase.Activity.User.UserActivity;
-import com.example.firebase.Model.Booking;
-import com.example.firebase.Model.Feedback;
-import com.example.firebase.Model.Room;
-import com.example.firebase.Model.Pet;
-import com.example.firebase.Model.User;
-import com.example.firebase.Model.Services;
-import com.example.firebase.Model.Role;
-import com.example.firebase.Model.Tracking;
-import com.google.firebase.database.DatabaseError;
+import com.example.firebase.activity.pet.PetActivity;
+import com.example.firebase.activity.servicesPet.ServicesPetActivity;
+import com.example.firebase.activity.user.UserActivity;
+import com.example.firebase.model.Booking;
+import com.example.firebase.model.Feedback;
+import com.example.firebase.model.Room;
+import com.example.firebase.model.Pet;
+import com.example.firebase.model.User;
+import com.example.firebase.model.Services;
+import com.example.firebase.model.Role;
+import com.example.firebase.model.Tracking;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.Date;
