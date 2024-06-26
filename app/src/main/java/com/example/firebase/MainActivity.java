@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
         // Add sample data
         addSampleUsers();
         addSamplePets();
-        addSampleServices();
+//        addSampleServices();
         addSampleBookings();
         addSampleRooms();
         addSampleFeedbacks();

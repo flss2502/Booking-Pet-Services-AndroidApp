@@ -61,6 +61,8 @@ public class AddUserActivity extends AppCompatActivity {
         });
     }
 
+
+
     private void createUser() {
         String fullName = edtFullName.getText().toString();
         String email = edtMail.getText().toString();

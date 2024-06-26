@@ -13,7 +13,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="70dp"
         android:orientation="horizontal">
 
         <TextView
@@ -72,26 +72,7 @@
             android:textSize="22sp" />
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginTop="10dp"
-        android:orientation="horizontal">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="id? "
-            android:textSize="22sp" />
-
-        <EditText
-            android:id="@+id/edt_services_id"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:inputType="number"
-            android:textSize="22sp" />
-    </LinearLayout>
 
     <Button
         android:id="@+id/btn_add_services"
