@@ -10,10 +10,12 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.firebase.Activity.User.UserDetail_UpdateActivity;
-import com.example.firebase.Api.ServicesPetApi;
+import com.example.firebase.Api.ServicesPetApiService;
 import com.example.firebase.Model.Services;
 import com.example.firebase.R;
+import com.example.firebase.Repository.ServicesPetRepository;
+
+import java.util.Map;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -23,9 +25,11 @@ public class ServicesDetail_Update_Delete extends AppCompatActivity {
 
     private EditText edtServiceName, edtDescription, edtPrice, edtServiceId;
     private static final String TAG = "ServicesDetailActivity";
+    private ServicesPetApiService servicesPetApiService;
 
 
     private Button btnCallApi, btnUpdateService;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,6 +43,8 @@ public class ServicesDetail_Update_Delete extends AppCompatActivity {
         btnCallApi = findViewById(R.id.btn_call_api_service);
         btnUpdateService = findViewById(R.id.btn_Update_api_service);
 
+        servicesPetApiService = ServicesPetRepository.getServicesPetApi();
+
         btnCallApi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -50,38 +56,49 @@ public class ServicesDetail_Update_Delete extends AppCompatActivity {
                 String servicesIdInput = edtServiceId.getText().toString();
 
                 if (servicesIdInput.isEmpty()) {
-                    Toast.makeText(ServicesDetail_Update_Delete.this, "Please enter a user ID", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ServicesDetail_Update_Delete.this, "Please enter a service ID", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
                 try {
                     long servicesId = Long.parseLong(servicesIdInput);
-                    Log.d(TAG, "Calling API with userId: " + servicesId);
+                    Log.d(TAG, "Calling API with serviceId: " + servicesId);
 
-                    ServicesPetApi.servicesPetApi.getServicesPet(servicesId).enqueue(new Callback<Services>() {
+                    servicesPetApiService.getServicesByServiceId("\"serviceId\"", servicesId).enqueue(new Callback<Map<String, Services>>() {
                         @Override
-                        public void onResponse(Call<Services> call, Response<Services> response) {
-                            Toast.makeText(ServicesDetail_Update_Delete
-                                    .this, "Call api Success", Toast.LENGTH_SHORT).show();
+                        public void onResponse(Call<Map<String, Services>> call, Response<Map<String, Services>> response) {
+                            if (response.isSuccessful() && response.body() != null) {
+                                Map<String, Services> servicesMap = response.body();
+                                Services service = null;
 
-                            Services services = response.body();
-                            double price = services.getPrice();
+                                // Iterate through the map to find the service
+                                for (Map.Entry<String, Services> entry : servicesMap.entrySet()) {
+                                    service = entry.getValue();
+                                    break;
+                                }
 
-
-                            if (services != null) {
-                                edtServiceName.setText(services.getServiceName());
-                                edtDescription.setText(services.getDescription());
-                                edtPrice.setText(String.format("%.2f", price));                            }
+                                if (service != null) {
+                                    double price = service.getPrice();
+                                    edtServiceName.setText(service.getServiceName());
+                                    edtDescription.setText(service.getDescription());
+                                    edtPrice.setText(String.format("%.2f", price));
+                                    Toast.makeText(ServicesDetail_Update_Delete.this, "Call API Success", Toast.LENGTH_SHORT).show();
+                                } else {
+                                    Toast.makeText(ServicesDetail_Update_Delete.this, "Service not found", Toast.LENGTH_SHORT).show();
+                                }
+                            } else {
+                                Toast.makeText(ServicesDetail_Update_Delete.this, "Failed to fetch service", Toast.LENGTH_SHORT).show();
+                            }
                         }
 
                         @Override
-                        public void onFailure(Call<Services> call, Throwable t) {
-                            Toast.makeText(ServicesDetail_Update_Delete.this, "Call api Error", Toast.LENGTH_SHORT).show();
+                        public void onFailure(Call<Map<String, Services>> call, Throwable t) {
+                            Toast.makeText(ServicesDetail_Update_Delete.this, "Call API Error", Toast.LENGTH_SHORT).show();
                         }
                     });
 
                 } catch (NumberFormatException e) {
-                    Toast.makeText(ServicesDetail_Update_Delete.this, "Invalid user ID", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ServicesDetail_Update_Delete.this, "Invalid service ID", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -99,10 +116,10 @@ public class ServicesDetail_Update_Delete extends AppCompatActivity {
                 Double price = Double.parseDouble(edtPrice.getText().toString());
                 Long serviceId = Long.parseLong(edtServiceId.getText().toString());
 
-                Services services = new Services(serviceId,serviceName,description,price);
+                Services services = new Services(serviceId, serviceName, description, price);
 
-                ServicesPetApi servicesPetApi = ServicesPetApi.servicesPetApi;
-                Call<Services> call = servicesPetApi.updateServices(serviceId, services);
+
+                Call<Services> call = servicesPetApiService.updateServices(serviceId, services);
 
                 call.enqueue(new Callback<Services>() {
                     @Override

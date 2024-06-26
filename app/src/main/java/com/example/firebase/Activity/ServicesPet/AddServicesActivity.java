@@ -8,14 +8,11 @@ import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
-import com.example.firebase.Activity.User.AddUserActivity;
-import com.example.firebase.Api.ServicesPetApi;
+import com.example.firebase.Api.ServicesPetApiService;
 import com.example.firebase.Model.Services;
 import com.example.firebase.R;
+import com.example.firebase.Repository.ServicesPetRepository;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -25,6 +22,9 @@ public class AddServicesActivity extends AppCompatActivity {
 
     private EditText edtServiceName, edtDescription, edtPrice, edtServiceId;
     private Button btnCreateServices;
+
+    private ServicesPetApiService servicesPetApiService;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,6 +36,8 @@ public class AddServicesActivity extends AppCompatActivity {
         edtPrice = findViewById(R.id.edt_price);
         edtServiceId = findViewById(R.id.edt_services_id);
         btnCreateServices = findViewById(R.id.btn_add_services);
+
+        servicesPetApiService = ServicesPetRepository.getServicesPetApi();
 
     btnCreateServices.setOnClickListener(new View.OnClickListener() {
         @Override
@@ -52,8 +54,8 @@ public class AddServicesActivity extends AppCompatActivity {
 
             Services services = new Services(serviceId, serviceName, description,price);
 
-            ServicesPetApi servicesPetApi = ServicesPetApi.servicesPetApi;
-            Call<Services> call = servicesPetApi.createServices(services);
+
+            Call<Services> call = servicesPetApiService.createServices(services);
 
             call.enqueue(new Callback<Services>() {
                 @Override

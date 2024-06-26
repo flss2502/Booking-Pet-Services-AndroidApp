@@ -9,12 +9,12 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.firebase.Adapter.ServicesAdapter;
-import com.example.firebase.Api.ServicesPetApi;
+import com.example.firebase.Api.ServicesPetApiService;
 import com.example.firebase.Model.Services;
 import com.example.firebase.R;
+import com.example.firebase.Repository.ServicesPetRepository;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 
 import retrofit2.Call;
@@ -25,6 +25,7 @@ public class ServicesListActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
     private ServicesAdapter servicesAdapter;
+    private ServicesPetApiService servicesPetApiService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,11 +33,14 @@ public class ServicesListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_services_list);
         recyclerView = findViewById(R.id.recycler_view_services_pet);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        servicesPetApiService = ServicesPetRepository.getServicesPetApi();
+
         callApi();
     }
 
     private void callApi() {
-        Call<Map<String,Services>> call = ServicesPetApi.servicesPetApi.getAllServicesPet();
+        Call<Map<String,Services>> call = servicesPetApiService.getAllServicesPet();
 
         call.enqueue(new Callback<Map<String,Services>>() {
             @Override

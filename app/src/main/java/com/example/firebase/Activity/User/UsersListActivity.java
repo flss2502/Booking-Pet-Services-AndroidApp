@@ -12,6 +12,7 @@ import com.example.firebase.Adapter.UserAdapter;
 import com.example.firebase.Api.UserApiService;
 import com.example.firebase.Model.User;
 import com.example.firebase.R;
+import com.example.firebase.Repository.UserRepository;
 
 import java.util.ArrayList;
 import java.util.Map;
@@ -24,6 +25,7 @@ public class UsersListActivity extends AppCompatActivity {
 
     private static final String TAG = "UsersListActivity";
     private RecyclerView recyclerView;
+    private UserApiService userApiService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,12 +35,14 @@ public class UsersListActivity extends AppCompatActivity {
 
         recyclerView = findViewById(R.id.recycler_view_users);
 
+        userApiService = UserRepository.getUserApiServices();
+
         // Call API to fetch users
         callApi();
     }
 
     private void callApi() {
-        Call<Map<String, User>> call = UserApiService.userApiService.getAllUsers();
+        Call<Map<String, User>> call = userApiService.getAllUsers();
 
         call.enqueue(new Callback<Map<String, User>>() {
             @Override

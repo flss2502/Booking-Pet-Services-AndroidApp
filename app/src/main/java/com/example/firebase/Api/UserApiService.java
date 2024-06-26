@@ -19,27 +19,20 @@ import retrofit2.http.Path;
 
 public interface UserApiService {
 
-    Gson gson  = new GsonBuilder()
-            .setDateFormat("yyyy-MM-dd HH:mm:ss")
-            .create();
-
-      UserApiService userApiService = new Retrofit.Builder()
-              .baseUrl("https://android-decd6-default-rtdb.firebaseio.com/")
-              .addConverterFactory(GsonConverterFactory.create(gson))
-              .build()
-              .create(UserApiService.class);
 
 
-    @GET("users/{userId}.json")
+    String USERS = "users";
+
+    @GET(USERS + "/{userId}.json")
     Call<User> getUser(@Path("userId") Long userId);
 
-    @GET("users.json")
+    @GET(USERS + ".json")
     Call<Map<String, User>>  getAllUsers();
 
-    @POST("users.json")
+    @POST(USERS + ".json")
     Call<User> createUser(@Body User user);
 
-    @PATCH("users/{userId}.json")
+    @PATCH(USERS+ "/{userId}.json")
     Call<User> updateUser(@Path("userId") Long userId, @Body User user);
 
 }

@@ -14,6 +14,9 @@ import com.example.firebase.Model.Role;
 import com.example.firebase.Api.UserApiService;
 import com.example.firebase.Model.User;
 import com.example.firebase.R;
+import com.example.firebase.Repository.UserRepository;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -24,11 +27,17 @@ public class AddUserActivity extends AppCompatActivity {
     private EditText edtFullName, edtMail, edtUserId, edtPassword, edtAddress, edtPhone, edtRole;
 
     private Button btnCreateUser;
+    private DatabaseReference mDatabase;
+    private UserApiService userApiService;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_user);
+
+        mDatabase = FirebaseDatabase.getInstance().getReference();
+
 
         edtFullName = findViewById(R.id.edt_full_name);
         edtMail = findViewById(R.id.edt_mail);
@@ -39,6 +48,10 @@ public class AddUserActivity extends AppCompatActivity {
         edtRole = findViewById(R.id.edt_role_user);
 
         btnCreateUser = findViewById(R.id.btn_create_user);
+
+        userApiService = UserRepository.getUserApiServices();
+
+
 
         btnCreateUser.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -70,7 +83,7 @@ public class AddUserActivity extends AppCompatActivity {
         User user = new User(userId, fullName, email, password, phone, address, role);
 
         // Call API
-        UserApiService userApiService = UserApiService.userApiService;
+
         Call<User> call = userApiService.createUser(user);
         call.enqueue(new Callback<User>() {
             @Override

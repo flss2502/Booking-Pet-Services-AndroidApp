@@ -17,6 +17,7 @@ import com.example.firebase.Api.UserApiService;
 import com.example.firebase.Model.Role;
 import com.example.firebase.Model.User;
 import com.example.firebase.R;
+import com.example.firebase.Repository.UserRepository;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -32,6 +33,7 @@ public class UserDetail_UpdateActivity extends AppCompatActivity {
     private TextView tvPassword, tvRole;
 
     private static final String TAG = "UserDetailActivity";
+    private UserApiService userApiService;
 
 
     @Override
@@ -49,6 +51,10 @@ public class UserDetail_UpdateActivity extends AppCompatActivity {
         tvRole = findViewById(R.id.tv_role);
         btnUpdateUser = findViewById(R.id.btn_update_user);
         btnCallApi = findViewById(R.id.btn_call_api);
+
+
+        userApiService = UserRepository.getUserApiServices();
+
         //Api get user by id
         btnCallApi.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -72,7 +78,9 @@ public class UserDetail_UpdateActivity extends AppCompatActivity {
                     long userId = Long.parseLong(userIdInput);
                     Log.d(TAG, "Calling API with userId: " + userId);
 
-                    UserApiService.userApiService.getUser(userId).enqueue(new Callback<User>() {
+
+                    Call<User> call = userApiService.getUser(userId);
+                    call.enqueue(new Callback<User>() {
                         @Override
                         public void onResponse(Call<User> call, Response<User> response) {
                             Toast.makeText(UserDetail_UpdateActivity.this, "Call api Success", Toast.LENGTH_SHORT).show();
@@ -103,7 +111,7 @@ public class UserDetail_UpdateActivity extends AppCompatActivity {
         });
 
 
-        //Api update user by id
+       // Api update user by id
         btnUpdateUser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -125,7 +133,6 @@ public class UserDetail_UpdateActivity extends AppCompatActivity {
                 User user = new User(userId, fullName, email, null, phone, address, null);
 
                 // Gọi API
-                UserApiService userApiService = UserApiService.userApiService;
                 Call<User> call = userApiService.updateUser(userId, user);
                 call.enqueue(new Callback<User>() {
                     @Override
