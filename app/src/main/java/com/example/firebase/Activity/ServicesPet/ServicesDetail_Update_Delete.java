@@ -73,7 +73,6 @@ public class ServicesDetail_Update_Delete extends AppCompatActivity {
                                 Map<String, Services> servicesMap = response.body();
                                 Services service = null;
 
-                                firebaseKey  = servicesMap.keySet().iterator().next();
                                 Toast.makeText(ServicesDetail_Update_Delete.this, "Key: " + firebaseKey, Toast.LENGTH_SHORT).show();
 
                                 // Iterate through the map to find the service

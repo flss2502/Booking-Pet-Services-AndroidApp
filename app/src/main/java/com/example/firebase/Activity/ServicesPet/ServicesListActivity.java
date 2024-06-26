@@ -65,7 +65,7 @@ public class ServicesListActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<Map<String,Services>> call, Throwable t) {
                 Toast.makeText(ServicesListActivity.this, "Error: " + t.getMessage(), Toast.LENGTH_SHORT).show();
-                Log.e("AddServicesActivity", "Error creating services", t);
+                Log.e("AddServicesActivity", "Error services", t);
             }
         });
     }

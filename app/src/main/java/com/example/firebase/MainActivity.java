@@ -8,6 +8,7 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.firebase.Activity.Pet.PetActivity;
 import com.example.firebase.Activity.ServicesPet.ServicesPetActivity;
 import com.example.firebase.Activity.User.UserActivity;
 import com.example.firebase.Model.Booking;
@@ -41,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
     //Api
     private Button btnUserApi;
     private Button btnServiceApi;
+    private Button btnPetApi;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
 
         // Add sample data
         addSampleUsers();
-        addSamplePets();
+//        addSamplePets();
 //        addSampleServices();
         addSampleBookings();
         addSampleRooms();
@@ -71,6 +73,7 @@ public class MainActivity extends AppCompatActivity {
         //Api
         btnUserApi = findViewById(R.id.buttonUser);
         btnServiceApi = findViewById(R.id.buttonServicesPet);
+        btnPetApi = findViewById(R.id.bnt_PetActivity);
 
         btnUserApi.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -89,6 +92,14 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+
+        btnPetApi.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, PetActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     private void addSampleUsers() {

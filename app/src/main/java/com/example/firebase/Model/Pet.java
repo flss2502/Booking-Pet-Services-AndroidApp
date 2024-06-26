@@ -2,7 +2,7 @@ package com.example.firebase.Model;
 
 public class Pet {
     private long petId;
-    private long userId; // Changed from int to long
+    private long userId;
     private String petName;
     private String petType;
 
