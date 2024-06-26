@@ -8,7 +8,7 @@ android {
     compileSdk = 34
     defaultConfig {
         applicationId = "com.example.firebase"
-        minSdkVersion(34)
+        minSdkVersion(33)
         targetSdkVersion(34)
         versionCode = 1
         versionName = "1.0"
@@ -40,6 +40,7 @@ dependencies {
     implementation("androidx.constraintlayout:constraintlayout:2.1.3")
     implementation(libs.firebase.database)
     implementation(libs.activity)
+    implementation(libs.firebase.auth)
 
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.3")
