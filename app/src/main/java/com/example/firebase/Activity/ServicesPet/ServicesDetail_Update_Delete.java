@@ -26,9 +26,10 @@ public class ServicesDetail_Update_Delete extends AppCompatActivity {
     private EditText edtServiceName, edtDescription, edtPrice, edtServiceId;
     private static final String TAG = "ServicesDetailActivity";
     private ServicesPetApiService servicesPetApiService;
+    private String firebaseKey;
 
 
-    private Button btnCallApi, btnUpdateService;
+    private Button btnCallApi, btnUpdateService, btnDeleteService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +43,7 @@ public class ServicesDetail_Update_Delete extends AppCompatActivity {
 
         btnCallApi = findViewById(R.id.btn_call_api_service);
         btnUpdateService = findViewById(R.id.btn_Update_api_service);
+        btnDeleteService = findViewById(R.id.btn_Delele_api_service);
 
         servicesPetApiService = ServicesPetRepository.getServicesPetApi();
 
@@ -70,6 +72,9 @@ public class ServicesDetail_Update_Delete extends AppCompatActivity {
                             if (response.isSuccessful() && response.body() != null) {
                                 Map<String, Services> servicesMap = response.body();
                                 Services service = null;
+
+                                firebaseKey  = servicesMap.keySet().iterator().next();
+                                Toast.makeText(ServicesDetail_Update_Delete.this, "Key: " + firebaseKey, Toast.LENGTH_SHORT).show();
 
                                 // Iterate through the map to find the service
                                 for (Map.Entry<String, Services> entry : servicesMap.entrySet()) {
@@ -140,6 +145,42 @@ public class ServicesDetail_Update_Delete extends AppCompatActivity {
             }
         });
 
+        btnDeleteService.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                hideKeyboard();
+                clickDeleteApiServices();
+            }
+
+            private void clickDeleteApiServices() {
+
+
+
+
+
+                    servicesPetApiService.deleteServiceByFirebaseKey(firebaseKey).enqueue(new Callback<Void>() {
+                        @Override
+                        public void onResponse(Call<Void> call, Response<Void> response) {
+                            if (response.isSuccessful()) {
+
+
+                                Toast.makeText(ServicesDetail_Update_Delete.this, "Delete Success", Toast.LENGTH_SHORT).show();
+                                Log.d("Delete" + firebaseKey, "Delete Success" + firebaseKey); // Log success message
+                            } else {
+                                Toast.makeText(ServicesDetail_Update_Delete.this, "Failed to Delete service", Toast.LENGTH_SHORT).show();
+                                Log.e("Delete", "Failed to Delete service"); // Log failure message
+
+                            }
+                        }
+
+                        @Override
+                        public void onFailure(Call<Void> call, Throwable t) {
+                            Toast.makeText(ServicesDetail_Update_Delete.this, "Error", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+
+            }
+        });
 
     }
 

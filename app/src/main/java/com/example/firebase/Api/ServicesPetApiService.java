@@ -10,6 +10,7 @@ import retrofit2.Call;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.Body;
+import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.PATCH;
 import retrofit2.http.POST;
@@ -33,5 +34,9 @@ public interface ServicesPetApiService {
 
     @PATCH(SERVICES + "/{serviceId}.json")
     Call<Services> updateServices(@Path("serviceId") Long serviceId, @Body Services services);
+
+    @DELETE(SERVICES + "/{key}.json")
+    Call<Void> deleteServiceByFirebaseKey(@Path("key") String firebaseKey);
+
 
 }
