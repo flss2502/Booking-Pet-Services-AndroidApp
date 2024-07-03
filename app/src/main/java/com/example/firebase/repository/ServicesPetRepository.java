@@ -4,7 +4,6 @@ import android.util.Log;
 
 import com.example.firebase.api.ServicesPetApiService;
 import com.example.firebase.retrofit.ApiClient;
-import com.example.firebase.model.Services;
 
 import java.util.ArrayList;
 import java.util.Map;

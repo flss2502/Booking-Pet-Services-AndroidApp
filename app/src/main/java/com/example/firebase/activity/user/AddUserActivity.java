@@ -12,7 +12,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.firebase.model.Role;
 import com.example.firebase.api.UserApiService;
-import com.example.firebase.model.User;
 import com.example.firebase.R;
 import com.example.firebase.repository.UserRepository;
 import com.google.firebase.database.DatabaseReference;

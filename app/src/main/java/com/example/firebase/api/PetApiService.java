@@ -1,4 +1,4 @@
-package com.example.firebase.api;
+package com.example.firebase.Api;
 
 import com.example.firebase.model.Pet;
 

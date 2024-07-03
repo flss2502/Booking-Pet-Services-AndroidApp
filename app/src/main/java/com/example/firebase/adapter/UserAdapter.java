@@ -8,8 +8,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.firebase.model.User;
 import com.example.firebase.R;
+import com.example.firebase.model.User;
 
 import java.util.ArrayList;
 

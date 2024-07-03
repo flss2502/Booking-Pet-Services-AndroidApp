@@ -13,12 +13,11 @@ import com.example.firebase.activity.servicesPet.ServicesPetActivity;
 import com.example.firebase.activity.user.UserActivity;
 import com.example.firebase.model.Booking;
 import com.example.firebase.model.Feedback;
-import com.example.firebase.model.Room;
 import com.example.firebase.model.Pet;
-import com.example.firebase.model.User;
-import com.example.firebase.model.Services;
 import com.example.firebase.model.Role;
+import com.example.firebase.model.Services;
 import com.example.firebase.model.Tracking;
+import com.example.firebase.model.User;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -59,10 +58,9 @@ public class MainActivity extends AppCompatActivity {
 
         // Add sample data
         addSampleUsers();
-//        addSamplePets();
-//        addSampleServices();
+        addSamplePets();
+        addSampleServices();
         addSampleBookings();
-        addSampleRooms();
         addSampleFeedbacks();
         addSampleTracking(); // Call method to add sample Tracking data
 
@@ -102,9 +100,9 @@ public class MainActivity extends AppCompatActivity {
 
     private void addSampleUsers() {
         ArrayList<User> userArrayList = new ArrayList<>();
-        User admin = new User(1, "Anh Quan", "anhquanpro332002@gmail.com", "password123", "123456789", "123 Street", Role.admin);
-        User customer = new User(2, "Hong Chanh", "hongchanh@gmail.com", "password123", "123456789", "123 Street", Role.customer);
-        User staff = new User(3,"Xuan Binh","staff@gmail.com","123456","012345678","Ho CHi Minh",Role.staff);
+        User admin = new User(1, "Anh Quan", "anhquanpro332002@gmail.com", "password123", "123456789", "123 Street", Role.admin,1,"https://firebasestorage.googleapis.com/v0/b/android-decd6.appspot.com/o/doctor.png?alt=media&token=d91e4a9a-1cda-4a1b-a092-525873115ba6",true);
+        User customer = new User(2, "Hong Chanh", "hongchanh@gmail.com", "password123", "123456789", "123 Street", Role.customer,1,"https://firebasestorage.googleapis.com/v0/b/android-decd6.appspot.com/o/woman.png?alt=media&token=c1f8b7d4-efb2-46e8-b8a5-13ce23b34401",true);
+        User staff = new User(3,"Xuan Binh","staff@gmail.com","123456","012345678","Ho CHi Minh",Role.staff,2,"https://firebasestorage.googleapis.com/v0/b/android-decd6.appspot.com/o/user.png?alt=media&token=f460906e-1a09-4757-bd41-d5e312b09a04",true);
         userArrayList.add(admin);
         userArrayList.add(customer);
         userArrayList.add(staff);
@@ -119,8 +117,8 @@ public class MainActivity extends AppCompatActivity {
 
     private void addSamplePets() {
         ArrayList<Pet> petArrayList = new ArrayList<>();
-        Pet pet1 = new Pet(1, 2, "Coco", "Dog");
-        Pet pet2 = new Pet(2, 2, "Whiskers", "Cat");
+        Pet pet1 = new Pet(1, 2, "Coco", "Dog",2,"male",2);
+        Pet pet2 = new Pet(2, 2, "Whiskers", "Cat",1,"female",1);
         petArrayList.add(pet1);
         petArrayList.add(pet2);
 
@@ -134,8 +132,8 @@ public class MainActivity extends AppCompatActivity {
 
     private void addSampleServices() {
         ArrayList<Services> servicesArrayList = new ArrayList<>();
-        Services service1 = new Services(1, "Haircut", "Professional haircut service", 25.5);
-        Services service2 = new Services(2, "Manicure", "Nail care service", 15.0);
+        Services service1 = new Services(1, "Haircut", "Professional haircut service",25.5,"https://firebasestorage.googleapis.com/v0/b/android-decd6.appspot.com/o/cat-long-meo-suckhoecuocsong_com_vn.jpg?alt=media&token=ce96d50a-c784-4390-a283-69f57594c295");
+        Services service2 = new Services(2, "Manicure", "Nail care service", 15.0,"https://firebasestorage.googleapis.com/v0/b/android-decd6.appspot.com/o/png-transparent-dog-grooming-cat-nail-clippers-pet-dog-animals-pet-dog-like-mammal.png?alt=media&token=5075a757-098c-4f10-9478-decc16cc5352");
         servicesArrayList.add(service1);
         servicesArrayList.add(service2);
 
@@ -146,7 +144,6 @@ public class MainActivity extends AppCompatActivity {
                     .addOnFailureListener(e -> Log.w("TAG", "Error adding service: " + service.getServiceName(), e));
         }
     }
-
     private void addSampleBookings() {
         ArrayList<Booking> bookingArrayList = new ArrayList<>();
         Booking booking1 = new Booking(1, 2, 1, 1, new Date(), new Date(), "confirmed");
@@ -162,25 +159,12 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void addSampleRooms() {
-        ArrayList<Room> roomArrayList = new ArrayList<>();
-        Room room1 = new Room(1, 1, new Date(), new Date(), "Room 101");
-        Room room2 = new Room(2, 2, new Date(), new Date(), "Room 102");
-        roomArrayList.add(room1);
-        roomArrayList.add(room2);
 
-        // Push rooms to Firebase under "rooms" node
-        for (Room room : roomArrayList) {
-            roomRef.child(String.valueOf(room.getId())).setValue(room)
-                    .addOnSuccessListener(aVoid -> Log.d("TAG", "Room added successfully: " + room.getRoomName()))
-                    .addOnFailureListener(e -> Log.w("TAG", "Error adding room: " + room.getRoomName(), e));
-        }
-    }
 
     private void addSampleFeedbacks() {
         ArrayList<Feedback> feedbackArrayList = new ArrayList<>();
-        Feedback feedback1 = new Feedback(1, "Great service!", "http://example.com", new Date());
-        Feedback feedback2 = new Feedback(2, "Very satisfied!", "http://example.com", new Date());
+        Feedback feedback1 = new Feedback(1, "Great service!",1000, new Date());
+        Feedback feedback2 = new Feedback(2, "Very satisfied!",100, new Date());
         feedbackArrayList.add(feedback1);
         feedbackArrayList.add(feedback2);
 
@@ -192,10 +176,12 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+
+
     private void addSampleTracking() {
         ArrayList<Tracking> trackingArrayList = new ArrayList<>();
-        Tracking tracking1 = new Tracking(1, "Walking", true, 1);
-        Tracking tracking2 = new Tracking(2, "Feeding", false, 2);
+        Tracking tracking1 = new Tracking(1, "Walking", true, 1,1);
+        Tracking tracking2 = new Tracking(2, "Feeding", false, 2,2);
         trackingArrayList.add(tracking1);
         trackingArrayList.add(tracking2);
 

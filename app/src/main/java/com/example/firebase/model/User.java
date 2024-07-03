@@ -11,10 +11,22 @@ public class User implements Parcelable {
     private String phone;
     private String address;
     private Role role;
+    private String imageUser;
+    private long petId;
+    private boolean status;
 
 
     // Constructor
-    public User(long userId, String fullName, String email, String password, String phone, String address, Role role) {
+
+    public long getPetId() {
+        return petId;
+    }
+
+    public void setPetId(long petId) {
+        this.petId = petId;
+    }
+
+    public User(long userId, String fullName, String email, String password, String phone, String address, Role role, long petId, String imageUser, boolean status) {
         this.userId = userId;
         this.fullName = fullName;
         this.email = email;
@@ -22,6 +34,17 @@ public class User implements Parcelable {
         this.phone = phone;
         this.address = address;
         this.role = role;
+        this.imageUser = imageUser;
+        this.petId = petId;
+        this.status = status;
+    }
+
+    public String getImageUser() {
+        return imageUser;
+    }
+
+    public void setImageUser(String imageUser) {
+        this.imageUser = imageUser;
     }
 
     public User() {

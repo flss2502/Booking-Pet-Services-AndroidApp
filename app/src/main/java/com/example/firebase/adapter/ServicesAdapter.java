@@ -9,8 +9,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 
-import com.example.firebase.model.Services;
 import com.example.firebase.R;
+import com.example.firebase.model.Services;
 
 import java.util.ArrayList;
 

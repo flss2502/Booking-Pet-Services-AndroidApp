@@ -10,7 +10,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.firebase.adapter.ServicesAdapter;
 import com.example.firebase.api.ServicesPetApiService;
-import com.example.firebase.model.Services;
 import com.example.firebase.R;
 import com.example.firebase.repository.ServicesPetRepository;
 

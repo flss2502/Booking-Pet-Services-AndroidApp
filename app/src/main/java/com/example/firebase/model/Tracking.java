@@ -6,11 +6,17 @@ public class Tracking {
     private boolean status;
     private long petId;
 
-    public Tracking(long trackingId, String activity, boolean status, long petId) {
+    private long bookingId;
+
+    public Tracking(long trackingId, String activity, boolean status, long petId, long bookingId) {
         this.trackingId = trackingId;
         this.activity = activity;
         this.status = status;
         this.petId = petId;
+        this.bookingId = bookingId;
+    }
+    public Tracking() {
+
     }
 
     public long getTrackingId() {
@@ -45,7 +51,11 @@ public class Tracking {
         this.petId = petId;
     }
 
-    public Tracking() {
+    public long getBookingId() {
+        return bookingId;
+    }
 
+    public void setBookingId(long bookingId) {
+        this.bookingId = bookingId;
     }
 }
