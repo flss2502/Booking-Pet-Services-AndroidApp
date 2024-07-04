@@ -13,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.firebase.model.Role;
 import com.example.firebase.api.UserApiService;
 import com.example.firebase.R;
+import com.example.firebase.model.User;
 import com.example.firebase.repository.UserRepository;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -81,7 +82,7 @@ public class AddUserActivity extends AppCompatActivity {
         }
 
         // Create User object
-        User user = new User(userId, fullName, email, password, phone, address, role);
+        User user = new User(userId, fullName, email, password, phone, address, role, 1,null,true);
 
         // Call API
 

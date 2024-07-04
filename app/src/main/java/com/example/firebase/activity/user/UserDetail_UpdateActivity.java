@@ -13,9 +13,14 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.firebase.activity.servicesPet.ServicesDetail_Update_Delete;
 import com.example.firebase.api.UserApiService;
 import com.example.firebase.R;
+import com.example.firebase.model.Services;
+import com.example.firebase.model.User;
 import com.example.firebase.repository.UserRepository;
+
+import java.util.Map;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -32,6 +37,7 @@ public class UserDetail_UpdateActivity extends AppCompatActivity {
 
     private static final String TAG = "UserDetailActivity";
     private UserApiService userApiService;
+    private String firebaseKey;
 
 
     @Override
@@ -77,28 +83,40 @@ public class UserDetail_UpdateActivity extends AppCompatActivity {
                     Log.d(TAG, "Calling API with userId: " + userId);
 
 
-                    Call<User> call = userApiService.getUser(userId);
-                    call.enqueue(new Callback<User>() {
+                    userApiService.getServicesByUserId("\"userId\"", userId).enqueue(new Callback<Map<String, User>>() {
                         @Override
-                        public void onResponse(Call<User> call, Response<User> response) {
-                            Toast.makeText(UserDetail_UpdateActivity.this, "Call api Success", Toast.LENGTH_SHORT).show();
+                        public void onResponse(Call<Map<String, User>> call, Response<Map<String, User>> response) {
+                            if (response.isSuccessful() && response.body() != null) {
+                                Map<String, User> userMap = response.body();
+                                User user = null;
 
-                            User user = response.body();
+                                Toast.makeText(UserDetail_UpdateActivity.this, "Key: " + firebaseKey, Toast.LENGTH_SHORT).show();
 
-                            if (user != null) {
-                                edtFullName.setText(user.getFullName());
-                                edtEmail.setText(user.getEmail());
-                                edtAddress.setText(user.getAddress());
-                                edtPhone.setText(user.getPhone());
-                                tvPassword.setText(user.getPassword());
-                                tvRole.setText(user.getRole().toString());
+                                // Iterate through the map to find the service
+                                for (Map.Entry<String, User> entry : userMap.entrySet()) {
+                                    user = entry.getValue();
+                                    break;
+                                }
+
+                                if (user != null) {
+                                    long UserId = user.getUserId();
+                                    edtUserId.setText(String.valueOf(userId));
+                                    edtEmail.setText(user.getEmail());
+                                    edtAddress.setText(user.getAddress());
+                                    edtFullName.setText(user.getFullName());
+                                    edtPhone.setText(user.getPhone());
+                                    Toast.makeText(UserDetail_UpdateActivity.this, "Call API Success", Toast.LENGTH_SHORT).show();
+                                } else {
+                                    Toast.makeText(UserDetail_UpdateActivity.this, "Service not found", Toast.LENGTH_SHORT).show();
+                                }
+                            } else {
+                                Toast.makeText(UserDetail_UpdateActivity.this, "Failed to fetch service", Toast.LENGTH_SHORT).show();
                             }
-
                         }
 
                         @Override
-                        public void onFailure(Call<User> call, Throwable t) {
-                            Toast.makeText(UserDetail_UpdateActivity.this, "Call api Error", Toast.LENGTH_SHORT).show();
+                        public void onFailure(Call<Map<String, User>> call, Throwable t) {
+                            Toast.makeText(UserDetail_UpdateActivity.this, "Call API Error", Toast.LENGTH_SHORT).show();
                         }
                     });
 
@@ -128,7 +146,7 @@ public class UserDetail_UpdateActivity extends AppCompatActivity {
 
 
                 // Tạo đối tượng User
-                User user = new User(userId, fullName, email, null, phone, address, null);
+                User user = new User(userId, fullName, email, null, phone, address, null, 1, null, true);
 
                 // Gọi API
                 Call<User> call = userApiService.updateUser(userId, user);

@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.firebase.adapter.UserAdapter;
 import com.example.firebase.api.UserApiService;
 import com.example.firebase.R;
+import com.example.firebase.model.User;
 import com.example.firebase.repository.UserRepository;
 
 import java.util.ArrayList;

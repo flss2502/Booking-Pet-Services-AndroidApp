@@ -1,4 +1,4 @@
-package com.example.firebase.Api;
+package com.example.firebase.api;
 
 import android.util.Log;
 

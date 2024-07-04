@@ -3,7 +3,7 @@ package com.example.firebase.model;
 import java.util.Date;
 
 public class Booking {
-    private long id;
+    private long bookingId;
     private long userId; // Foreign key to User
     private long petId; // Foreign key to Pet
     private long serviceId; // Foreign key to Service
@@ -18,8 +18,8 @@ public class Booking {
     }
 
     // Parameterized constructor
-    public Booking(long id, long userId, long petId, long serviceId, Date startDate, Date endDate, String status) {
-        this.id = id;
+    public Booking(long bookingId, long userId, long petId, long serviceId, Date startDate, Date endDate, String status) {
+        this.bookingId = bookingId;
         this.userId = userId;
         this.petId = petId;
         this.serviceId = serviceId;
@@ -29,12 +29,14 @@ public class Booking {
     }
 
     // Getter and setter methods
-    public long getId() {
-        return id;
+
+
+    public long getBookingId() {
+        return bookingId;
     }
 
-    public void setId(long id) {
-        this.id = id;
+    public void setBookingId(long bookingId) {
+        this.bookingId = bookingId;
     }
 
     public long getUserId() {

@@ -3,6 +3,7 @@ package com.example.firebase.repository;
 import android.util.Log;
 
 import com.example.firebase.api.ServicesPetApiService;
+import com.example.firebase.model.Services;
 import com.example.firebase.retrofit.ApiClient;
 
 import java.util.ArrayList;

@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.firebase.api.ServicesPetApiService;
 import com.example.firebase.R;
+import com.example.firebase.model.Services;
 import com.example.firebase.repository.ServicesPetRepository;
 
 import java.util.Map;
@@ -119,7 +120,7 @@ public class ServicesDetail_Update_Delete extends AppCompatActivity {
                 Double price = Double.parseDouble(edtPrice.getText().toString());
                 Long serviceId = Long.parseLong(edtServiceId.getText().toString());
 
-                Services services = new Services(serviceId, serviceName, description, price);
+                Services services = new Services(serviceId, serviceName, description, price, null);
 
 
                 Call<Services> call = servicesPetApiService.updateServices(serviceId, services);

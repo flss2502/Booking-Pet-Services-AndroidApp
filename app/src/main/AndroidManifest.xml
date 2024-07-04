@@ -17,6 +17,12 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".activity.booking.BookingListActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.booking.BookingActivity"
+            android:exported="false" />
+        <activity
             android:name=".activity.pet.PetListActivity"
             android:exported="false" />
         <activity

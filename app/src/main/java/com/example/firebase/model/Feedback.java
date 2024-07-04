@@ -3,6 +3,8 @@ package com.example.firebase.model;
 import java.util.Date;
 
 public class Feedback {
+
+    private long feedbackId;
     private long userId;
     private String description;
     private double rating;
@@ -13,11 +15,20 @@ public class Feedback {
     public Feedback() {
     }
 
-    public Feedback(long userId, String description, double rating, Date time) {
+    public Feedback(long feedbackId, long userId, String description, double rating, Date time) {
+        this.feedbackId = feedbackId;
         this.userId = userId;
         this.description = description;
         this.rating = rating;
         this.time = time;
+    }
+
+    public long getFeedbackId() {
+        return feedbackId;
+    }
+
+    public void setFeedbackId(long feedbackId) {
+        this.feedbackId = feedbackId;
     }
 
     public double getRating() {

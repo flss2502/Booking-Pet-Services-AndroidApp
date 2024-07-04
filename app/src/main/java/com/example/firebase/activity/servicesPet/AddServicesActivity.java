@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.firebase.api.ServicesPetApiService;
 import com.example.firebase.R;
+import com.example.firebase.model.Services;
 import com.example.firebase.repository.ServicesPetRepository;
 
 import retrofit2.Call;
@@ -75,7 +76,7 @@ public class AddServicesActivity extends AppCompatActivity {
                     lastIdService = lastIdService + 1L;
                 }
 
-                Services services = new Services(lastIdService, serviceName, description, price);
+                Services services = new Services(lastIdService, serviceName, description, price, null);
 
 
                 Call<Services> call = servicesPetApiService.createServices(services);

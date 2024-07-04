@@ -153,9 +153,9 @@ public class MainActivity extends AppCompatActivity {
 
         // Push bookings to Firebase under "bookings" node
         for (Booking booking : bookingArrayList) {
-            bookingRef.child(String.valueOf(booking.getId())).setValue(booking)
-                    .addOnSuccessListener(aVoid -> Log.d("TAG", "Booking added successfully: " + booking.getId()))
-                    .addOnFailureListener(e -> Log.w("TAG", "Error adding booking: " + booking.getId(), e));
+            bookingRef.child(String.valueOf(booking.getBookingId())).setValue(booking)
+                    .addOnSuccessListener(aVoid -> Log.d("TAG", "Booking added successfully: " + booking.getBookingId()))
+                    .addOnFailureListener(e -> Log.w("TAG", "Error adding booking: " + booking.getBookingId(), e));
         }
     }
 
@@ -163,8 +163,8 @@ public class MainActivity extends AppCompatActivity {
 
     private void addSampleFeedbacks() {
         ArrayList<Feedback> feedbackArrayList = new ArrayList<>();
-        Feedback feedback1 = new Feedback(1, "Great service!",1000, new Date());
-        Feedback feedback2 = new Feedback(2, "Very satisfied!",100, new Date());
+        Feedback feedback1 = new Feedback(1, 1, "Great service!",1000, new Date());
+        Feedback feedback2 = new Feedback(1, 2, "Very satisfied!",100, new Date());
         feedbackArrayList.add(feedback1);
         feedbackArrayList.add(feedback2);
 

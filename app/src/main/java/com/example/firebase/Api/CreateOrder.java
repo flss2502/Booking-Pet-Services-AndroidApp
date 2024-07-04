@@ -1,4 +1,4 @@
-package com.example.firebase.Api;
+package com.example.firebase.api;
 
 
 import com.example.firebase.Constant.AppInfo;
